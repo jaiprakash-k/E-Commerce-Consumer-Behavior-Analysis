@@ -140,7 +140,6 @@ Education_Level vs Purchase_Intent:
 Marital_Status vs Customer_Loyalty_Program_Member:
   Chi² = 1.214, p-value = 0.7497 → ❌ Not Significant
 ```
-<img width="1600" height="641" alt="image" src="https://github.com/user-attachments/assets/7c6edf71-07be-4a85-b5a7-bdcc349f097d" />
 
 #### ANOVA
 
