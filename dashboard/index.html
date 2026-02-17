@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Consumer Behavior Analysis</title>
+    <meta name="description" content="Interactive dashboard analyzing e-commerce consumer behavior patterns, purchase intent, and customer segmentation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Side Navigation -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+        <span class="brand-icon">🛒</span>
+        <span class="brand-text">E-Com Analytics</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active" data-section="hero"><span class="nav-icon">🏠</span><span>Overview</span></a></li>
+        <li><a href="#kpi" class="nav-link" data-section="kpi"><span class="nav-icon">📊</span><span>KPI</span></a></li>
+        <li><a href="#demographics" class="nav-link" data-section="demographics"><span class="nav-icon">👥</span><span>Demographics</span></a></li>
+        <li><a href="#purchase" class="nav-link" data-section="purchase"><span class="nav-icon">🛍️</span><span>Purchases</span></a></li>
+        <li><a href="#satisfaction" class="nav-link" data-section="satisfaction"><span class="nav-icon">⭐</span><span>Satisfaction</span></a></li>
+        <li><a href="#digital" class="nav-link" data-section="digital"><span class="nav-icon">📱</span><span>Digital</span></a></li>
+        <li><a href="#loyalty" class="nav-link" data-section="loyalty"><span class="nav-icon">💳</span><span>Loyalty</span></a></li>
+        <li><a href="#ml" class="nav-link" data-section="ml"><span class="nav-icon">🤖</span><span>ML Models</span></a></li>
+        <li><a href="#segments" class="nav-link" data-section="segments"><span class="nav-icon">🎨</span><span>Segments</span></a></li>
+        <li><a href="#insights" class="nav-link" data-section="insights"><span class="nav-icon">💡</span><span>Insights</span></a></li>
+    </ul>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Hackathon Submission • Interactive Dashboard</div>
+            <h1 class="hero-title">E-Commerce Consumer<br><span class="gradient-text">Behavior Analysis</span></h1>
+            <p class="hero-subtitle">Uncovering Patterns, Predicting Intent & Driving Strategy</p>
+            <div class="hero-meta">
+                <span class="meta-tag"><span class="meta-icon">👤</span> Jai Prakash</span>
+                <span class="meta-tag"><span class="meta-icon">📅</span> 2024</span>
+                <span class="meta-tag"><span class="meta-icon">📊</span> 1,000 Consumers</span>
+                <span class="meta-tag"><span class="meta-icon">📈</span> 28 Features</span>
+            </div>
+            <div class="hero-chips">
+                <span class="chip">Data Cleaning</span>
+                <span class="chip">EDA</span>
+                <span class="chip">Statistical Tests</span>
+                <span class="chip">ML Models</span>
+                <span class="chip">Clustering</span>
+                <span class="chip">Insights</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Cards -->
+    <section id="kpi" class="section">
+        <h2 class="section-title"><span class="section-icon">📊</span> Key Performance Indicators</h2>
+        <div class="kpi-grid">
+            <div class="kpi-card reveal" id="kpi-revenue">
+                <div class="kpi-icon-wrapper" style="--accent: #00d2ff;">
+                    <span class="kpi-icon">💰</span>
+                </div>
+                <div class="kpi-value" data-target="0" id="kpi-revenue-val">$0</div>
+                <div class="kpi-label">Total Revenue</div>
+                <div class="kpi-trend up">From 1,000 transactions</div>
+            </div>
+            <div class="kpi-card reveal" id="kpi-avg">
+                <div class="kpi-icon-wrapper" style="--accent: #7b2ff7;">
+                    <span class="kpi-icon">🛒</span>
+                </div>
+                <div class="kpi-value" data-target="0" id="kpi-avg-val">$0</div>
+                <div class="kpi-label">Average Purchase</div>
+                <div class="kpi-trend up">Per transaction</div>
+            </div>
+            <div class="kpi-card reveal" id="kpi-customers">
+                <div class="kpi-icon-wrapper" style="--accent: #ff6b6b;">
+                    <span class="kpi-icon">👥</span>
+                </div>
+                <div class="kpi-value" data-target="1000" id="kpi-customers-val">0</div>
+                <div class="kpi-label">Total Customers</div>
+                <div class="kpi-trend neutral">Unique profiles</div>
+            </div>
+            <div class="kpi-card reveal" id="kpi-satisfaction">
+                <div class="kpi-icon-wrapper" style="--accent: #feca57;">
+                    <span class="kpi-icon">⭐</span>
+                </div>
+                <div class="kpi-value" data-target="0" id="kpi-satisfaction-val">0</div>
+                <div class="kpi-label">Avg Satisfaction</div>
+                <div class="kpi-trend neutral">Out of 10</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demographics -->
+    <section id="demographics" class="section">
+        <h2 class="section-title"><span class="section-icon">👥</span> Customer Demographics</h2>
+        <div class="chart-grid-3">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🎂 Age Distribution</h3>
+                <div class="chart-container"><canvas id="chart-age"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">👫 Gender Distribution</h3>
+                <div class="chart-container chart-container-sm"><canvas id="chart-gender"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">💼 Income Level</h3>
+                <div class="chart-container chart-container-sm"><canvas id="chart-income"></canvas></div>
+            </div>
+        </div>
+        <div class="chart-grid-2" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🎓 Education Level</h3>
+                <div class="chart-container"><canvas id="chart-education"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">💍 Marital Status</h3>
+                <div class="chart-container"><canvas id="chart-marital"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purchase Behavior -->
+    <section id="purchase" class="section">
+        <h2 class="section-title"><span class="section-icon">🛍️</span> Purchase Behavior Analysis</h2>
+        <div class="chart-grid-2">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">💎 Average Spending by Category</h3>
+                <div class="chart-container chart-container-lg"><canvas id="chart-category-avg"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📦 Category Revenue</h3>
+                <div class="chart-container chart-container-lg"><canvas id="chart-category-revenue"></canvas></div>
+            </div>
+        </div>
+        <div class="chart-grid-2" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🛒 Purchase Channel</h3>
+                <div class="chart-container"><canvas id="chart-channel"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📅 Monthly Trends</h3>
+                <div class="chart-container"><canvas id="chart-monthly"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Satisfaction -->
+    <section id="satisfaction" class="section">
+        <h2 class="section-title"><span class="section-icon">⭐</span> Customer Satisfaction Deep-Dive</h2>
+        <div class="chart-grid-2">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📊 Satisfaction by Category</h3>
+                <div class="chart-container chart-container-lg"><canvas id="chart-sat-category"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">💼 Satisfaction by Income</h3>
+                <div class="chart-container chart-container-lg"><canvas id="chart-sat-income"></canvas></div>
+            </div>
+        </div>
+        <div class="chart-grid-1" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🔍 Product Rating vs Customer Satisfaction</h3>
+                <div class="chart-container"><canvas id="chart-rating-satisfaction"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Footprint -->
+    <section id="digital" class="section">
+        <h2 class="section-title"><span class="section-icon">📱</span> Digital Footprint & Engagement</h2>
+        <div class="chart-grid-2">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📱 Device Used for Shopping</h3>
+                <div class="chart-container chart-container-sm"><canvas id="chart-device"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">💳 Payment Method</h3>
+                <div class="chart-container chart-container-sm"><canvas id="chart-payment"></canvas></div>
+            </div>
+        </div>
+        <div class="chart-grid-2" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📣 Social Media Influence</h3>
+                <div class="chart-container"><canvas id="chart-social"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📢 Engagement with Ads</h3>
+                <div class="chart-container"><canvas id="chart-ads"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loyalty & Retention -->
+    <section id="loyalty" class="section">
+        <h2 class="section-title"><span class="section-icon">💳</span> Loyalty & Retention Analysis</h2>
+        <div class="chart-grid-2">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">💳 Loyalty Program: Member vs Non-Member</h3>
+                <div class="chart-container"><canvas id="chart-loyalty"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🏷️ Discount Sensitivity by Income</h3>
+                <div class="chart-container"><canvas id="chart-discount"></canvas></div>
+            </div>
+        </div>
+        <div class="chart-grid-2" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🎯 Purchase Intent Distribution</h3>
+                <div class="chart-container"><canvas id="chart-intent"></canvas></div>
+            </div>
+            <div class="chart-card reveal">
+                <h3 class="chart-title">⏱️ Time to Decision by Intent</h3>
+                <div class="chart-container"><canvas id="chart-decision-time"></canvas></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ML Models -->
+    <section id="ml" class="section">
+        <h2 class="section-title"><span class="section-icon">🤖</span> Machine Learning Results</h2>
+        <div class="ml-cards-grid">
+            <div class="ml-card reveal">
+                <div class="ml-card-header" style="--accent: #00d2ff;">
+                    <span class="ml-card-icon">🎯</span>
+                    <h3>Purchase Intent Prediction</h3>
+                </div>
+                <div class="ml-card-body">
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">Best Model</span>
+                        <span class="ml-metric-value">Random Forest</span>
+                    </div>
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">Accuracy</span>
+                        <span class="ml-metric-value highlight-cyan">24.0%</span>
+                    </div>
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">Task</span>
+                        <span class="ml-metric-value">4-Class Classification</span>
+                    </div>
+                    <div class="ml-note">⚠️ Low accuracy suggests purchase intent is not easily predictable from available features — consumer behavior is highly stochastic.</div>
+                </div>
+            </div>
+            <div class="ml-card reveal">
+                <div class="ml-card-header" style="--accent: #feca57;">
+                    <span class="ml-card-icon">⭐</span>
+                    <h3>Satisfaction Prediction</h3>
+                </div>
+                <div class="ml-card-body">
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">Best Model</span>
+                        <span class="ml-metric-value">Gradient Boosting</span>
+                    </div>
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">RMSE</span>
+                        <span class="ml-metric-value highlight-yellow">3.04</span>
+                    </div>
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">R² Score</span>
+                        <span class="ml-metric-value">-0.18</span>
+                    </div>
+                    <div class="ml-note">📝 Negative R² indicates satisfaction is influenced by latent factors not captured in the dataset.</div>
+                </div>
+            </div>
+            <div class="ml-card reveal">
+                <div class="ml-card-header" style="--accent: #ff6b6b;">
+                    <span class="ml-card-icon">💳</span>
+                    <h3>Loyalty Prediction</h3>
+                </div>
+                <div class="ml-card-body">
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">Best Model</span>
+                        <span class="ml-metric-value">Logistic Regression</span>
+                    </div>
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">Accuracy</span>
+                        <span class="ml-metric-value highlight-red">53.2%</span>
+                    </div>
+                    <div class="ml-metric">
+                        <span class="ml-metric-label">AUC</span>
+                        <span class="ml-metric-value">0.566</span>
+                    </div>
+                    <div class="ml-note">📊 Slightly better than random — loyalty membership is largely a random individual choice in this dataset.</div>
+                </div>
+            </div>
+        </div>
+        <div class="chart-grid-1" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🔑 Statistical Tests Summary</h3>
+                <div class="stats-table-container">
+                    <table class="stats-table">
+                        <thead>
+                            <tr><th>Variable 1</th><th>Variable 2</th><th>Chi² Statistic</th><th>p-value</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Gender</td><td>Purchase Intent</td><td>17.14</td><td>0.703</td><td class="not-sig">❌ Not Significant</td></tr>
+                            <tr><td>Income Level</td><td>Purchase Intent</td><td>3.74</td><td>0.291</td><td class="not-sig">❌ Not Significant</td></tr>
+                            <tr><td>Income Level</td><td>Discount Sensitivity</td><td>1.68</td><td>0.432</td><td class="not-sig">❌ Not Significant</td></tr>
+                            <tr><td>Gender</td><td>Purchase Channel</td><td>10.20</td><td>0.747</td><td class="not-sig">❌ Not Significant</td></tr>
+                            <tr><td>Education Level</td><td>Purchase Intent</td><td>13.00</td><td>0.043</td><td class="sig">✅ Significant</td></tr>
+                            <tr><td>Marital Status</td><td>Loyalty Program</td><td>1.21</td><td>0.750</td><td class="not-sig">❌ Not Significant</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Segments -->
+    <section id="segments" class="section">
+        <h2 class="section-title"><span class="section-icon">🎨</span> Customer Segmentation (K-Means)</h2>
+        <div class="segment-info reveal">
+            <div class="segment-badge">🏆 Optimal K = 8</div>
+            <div class="segment-badge">Silhouette Score = 0.099</div>
+        </div>
+        <div class="chart-grid-1">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">🕸️ Cluster Radar Profiles</h3>
+                <div class="chart-container chart-container-lg"><canvas id="chart-radar"></canvas></div>
+            </div>
+        </div>
+        <div class="chart-grid-1" style="margin-top: 1.5rem;">
+            <div class="chart-card reveal">
+                <h3 class="chart-title">📊 Cluster Profiles (Mean Values)</h3>
+                <div class="stats-table-container">
+                    <table class="stats-table" id="cluster-table">
+                        <thead>
+                            <tr>
+                                <th>Cluster</th><th>Size</th><th>Avg Age</th><th>Avg Purchase</th><th>Frequency</th><th>Brand Loyalty</th><th>Rating</th><th>Satisfaction</th><th>Decision Time</th><th>Return Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><span class="cluster-dot" style="background:#00d2ff;"></span>0</td><td>134</td><td>37.6</td><td>$274.96</td><td>5.34</td><td>1.87</td><td>4.15</td><td>4.15</td><td>4.29</td><td>1.20</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#7b2ff7;"></span>1</td><td>125</td><td>29.1</td><td>$265.83</td><td>6.01</td><td>3.95</td><td>3.18</td><td>7.66</td><td>3.63</td><td>1.41</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#ff6b6b;"></span>2</td><td>122</td><td>26.8</td><td>$391.26</td><td>9.13</td><td>2.39</td><td>3.48</td><td>5.32</td><td>8.41</td><td>0.31</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#feca57;"></span>3</td><td>134</td><td>34.7</td><td>$255.54</td><td>8.43</td><td>1.99</td><td>2.32</td><td>6.58</td><td>10.96</td><td>1.66</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#48dbfb;"></span>4</td><td>116</td><td>32.6</td><td>$151.79</td><td>9.57</td><td>4.01</td><td>2.19</td><td>4.97</td><td>6.57</td><td>0.37</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#ff9ff3;"></span>5</td><td>103</td><td>39.9</td><td>$323.32</td><td>8.73</td><td>4.41</td><td>3.25</td><td>3.19</td><td>9.07</td><td>1.59</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#54a0ff;"></span>6</td><td>131</td><td>32.2</td><td>$210.57</td><td>4.00</td><td>3.55</td><td>3.78</td><td>4.10</td><td>10.60</td><td>0.76</td></tr>
+                            <tr><td><span class="cluster-dot" style="background:#5f27cd;"></span>7</td><td>135</td><td>41.6</td><td>$329.77</td><td>5.19</td><td>2.52</td><td>1.93</td><td>6.76</td><td>6.96</td><td>0.38</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section id="insights" class="section">
+        <h2 class="section-title"><span class="section-icon">💡</span> Key Insights & Recommendations</h2>
+        <div class="insights-grid">
+            <div class="insight-card reveal">
+                <div class="insight-number">1</div>
+                <div class="insight-content">
+                    <h4>Purchase Intent is Multi-dimensional</h4>
+                    <p>Driven by research time, brand loyalty, and discount sensitivity — not just demographics.</p>
+                    <span class="insight-impact">🎯 Personalization engines should weight behavioral signals over demographic ones</span>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-number">2</div>
+                <div class="insight-content">
+                    <h4>Loyalty ≠ Higher Spending</h4>
+                    <p>Program members don't necessarily spend more — the program may attract deal-seekers.</p>
+                    <span class="insight-impact">💡 Redesign loyalty tiers to reward high-spend behavior</span>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-number">3</div>
+                <div class="insight-content">
+                    <h4>Social Media Influence Varies</h4>
+                    <p>Younger customers (18-35) are significantly more influenced by social media.</p>
+                    <span class="insight-impact">📱 Allocate social media ad budget to 18-35 demographic</span>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-number">4</div>
+                <div class="insight-content">
+                    <h4>Returns Correlate with Impulse</h4>
+                    <p>Impulsive buyers have higher return rates across all categories.</p>
+                    <span class="insight-impact">🔄 Implement "cooling off" features (wishlists, save-for-later)</span>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-number">5</div>
+                <div class="insight-content">
+                    <h4>Research = Satisfaction</h4>
+                    <p>Product research time correlates with higher customer satisfaction scores.</p>
+                    <span class="insight-impact">📝 Invest in detailed product pages, comparison tools, reviews</span>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-number">6</div>
+                <div class="insight-content">
+                    <h4>Middle-Income = Most Discount Sensitive</h4>
+                    <p>Not low-income as expected — middle-income customers respond most to discounts.</p>
+                    <span class="insight-impact">🏷️ Target discount campaigns at middle-income segments</span>
+                </div>
+            </div>
+            <div class="insight-card reveal">
+                <div class="insight-number">7</div>
+                <div class="insight-content">
+                    <h4>8 Distinct Customer Segments</h4>
+                    <p>K-Means clustering reveals distinct behavioral profiles enabling targeted marketing.</p>
+                    <span class="insight-impact">🎨 Deploy segment-specific campaigns based on cluster profiles</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations-section reveal">
+            <h3 class="recommendations-title">🚀 Strategic Recommendations</h3>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>📣 Marketing Optimization</h4>
+                    <ul>
+                        <li>Deploy segment-specific campaigns based on K-Means clusters</li>
+                        <li>Increase social media budget for 18-35 audience</li>
+                        <li>Use personalized discount strategies for middle-income</li>
+                        <li>Leverage product ratings prominently</li>
+                    </ul>
+                </div>
+                <div class="rec-card">
+                    <h4>🔄 Customer Retention</h4>
+                    <ul>
+                        <li>Redesign loyalty program with tiered spend-based rewards</li>
+                        <li>Post-purchase engagement for impulsive buyers</li>
+                        <li>Re-engagement campaigns for declining frequency</li>
+                        <li>Exclusive early access for high brand-loyalty customers</li>
+                    </ul>
+                </div>
+                <div class="rec-card">
+                    <h4>💰 Revenue Growth</h4>
+                    <ul>
+                        <li>Cross-sell based on category purchase patterns</li>
+                        <li>Optimize pricing for high-performing categories</li>
+                        <li>Reduce friction in low-satisfaction channels</li>
+                        <li>Invest in mobile shopping experience</li>
+                    </ul>
+                </div>
+                <div class="rec-card">
+                    <h4>📊 Data-Driven Framework</h4>
+                    <ul>
+                        <li>Use Purchase Intent model for homepage personalization</li>
+                        <li>Deploy Satisfaction model to identify at-risk customers</li>
+                        <li>Use Loyalty Prediction for member conversion targeting</li>
+                        <li>Continuously update segments as behavior evolves</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🛒 E-Commerce Consumer Behavior Analysis Dashboard • Built by <strong>Jai Prakash</strong></p>
+        <p class="footer-sub">Data: 1,000 consumers × 28 features | ML Models: Random Forest, Gradient Boosting, Logistic Regression, K-Means</p>
+    </footer>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
