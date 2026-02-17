@@ -107,11 +107,7 @@ The notebook includes interactive Plotly dashboards/plots for:
 <img width="1600" height="548" alt="image" src="https://github.com/user-attachments/assets/0ec885ad-e49e-4ae8-93c7-25c1a4b9b8cf" />
 <img width="1600" height="560" alt="image" src="https://github.com/user-attachments/assets/0f09b17f-0b7a-4512-9e1c-321722f5c6a9" />
 <img width="1600" height="544" alt="image" src="https://github.com/user-attachments/assets/795b7b31-637b-4903-9fe2-6d756a9e5695" />
-<img width="1580" height="1259" alt="image" src="https://github.com/user-attachments/assets/9efa18ff-cbc0-451e-b42d-eaedfabae7d4" />
-<img width="1600" height="642" alt="image" src="https://github.com/user-attachments/assets/bdf077d9-f067-4b09-b405-91e281a7171e" />
-<img width="1600" height="562" alt="image" src="https://github.com/user-attachments/assets/470d1fee-6c8d-43bd-a9e8-5280b7a06b4d" />
-<img width="1600" height="613" alt="image" src="https://github.com/user-attachments/assets/c22ec67b-0c2b-4984-af6e-9f32dfc83e9a" />
-<img width="1600" height="570" alt="image" src="https://github.com/user-attachments/assets/84928718-c828-4e4c-8ab3-d8d4f4a9c2a3" />
+
 
 
 ### 4) Statistical tests
@@ -140,6 +136,7 @@ Education_Level vs Purchase_Intent:
 Marital_Status vs Customer_Loyalty_Program_Member:
   Chi² = 1.214, p-value = 0.7497 → ❌ Not Significant
 ```
+<img width="1580" height="1259" alt="image" src="https://github.com/user-attachments/assets/a94a1fc9-e40f-47ee-b29c-417199dbc0f3" />
 
 #### ANOVA
 
@@ -172,7 +169,7 @@ Baseline models:
 
 🏆 Best Model: Random Forest
 ```
-<img width="1600" height="641" alt="image" src="https://github.com/user-attachments/assets/d52cd8bf-728c-4599-922f-ef98d3655817" />
+<img width="1600" height="642" alt="image" src="https://github.com/user-attachments/assets/d1594bda-f723-4731-b8bc-66e95ca7917d" />
 
 Tuned model (RandomizedSearchCV over RF/ExtraTrees):
 
@@ -200,8 +197,8 @@ Interpretation: Purchase intent is hard to predict accurately from the available
    MAE:  2.5386
    R²:   -0.1847
 ```
-<img width="1600" height="652" alt="image" src="https://github.com/user-attachments/assets/93b4751b-3e31-4b92-bd8b-e8bf07faaf45" />
-![Uploading image.png…]()
+<img width="1600" height="562" alt="image" src="https://github.com/user-attachments/assets/6cad50b3-a4a2-4212-bfb8-ad0ad7e6a5fe" />
+<img width="1600" height="613" alt="image" src="https://github.com/user-attachments/assets/a1f6d455-0a8d-41d8-ab4a-712f51c0c03d" />
 
 Negative $R^2$ indicates this model underperforms a naive baseline (predicting the mean) on this particular split.
 
@@ -218,7 +215,7 @@ Baseline models:
 
 🏆 Best Model (by AUC): Logistic Regression
 ```
-![Uploading image.png…]()
+<img width="1600" height="570" alt="image" src="https://github.com/user-attachments/assets/77cff003-cb82-4ee2-b80a-fb37b40282f1" />
 
 Tuned model (optimize ROC-AUC):
 
@@ -238,10 +235,10 @@ Interpretation: tuned performance is close to random-chance ROC-AUC (~0.5), sugg
 ```text
 🏆 Optimal K = 8 (Silhouette = 0.0990)
 ```
-![Uploading image.png…]()
-![Uploading image.png…]()
+<img width="1600" height="641" alt="image" src="https://github.com/user-attachments/assets/57edbb9e-eedf-4047-b0c8-dc44ae488083" />
 
 Cluster profiling output (means + sizes) is printed in the notebook for review.
+<img width="1600" height="511" alt="image" src="https://github.com/user-attachments/assets/3f287c33-811c-4220-8f70-c324e4987b69" />
 
 ### 6) Completion marker
 
@@ -256,6 +253,7 @@ Cluster profiling output (means + sizes) is printed in the notebook for review.
   ✅ 3 ML Models + 1 Clustering Model
   ✅ Key Insights & Recommendations
 ```
+<img width="1600" height="652" alt="image" src="https://github.com/user-attachments/assets/69b0b971-aa2e-4df8-8efc-75718cd27d20" />
 
 ---
 
