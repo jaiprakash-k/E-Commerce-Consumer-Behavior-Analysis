@@ -93,6 +93,8 @@ The notebook includes interactive Plotly dashboards/plots for:
 - Digital footprint & engagement
 - Loyalty & retention
 - Purchase intent and time trends
+<img width="1463" height="985" alt="image" src="https://github.com/user-attachments/assets/d0049cb3-3f75-4a66-a589-e4ed53e2e15c" />
+
 
 ### 4) Statistical tests
 
