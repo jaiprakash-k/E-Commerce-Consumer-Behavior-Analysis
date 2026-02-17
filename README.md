@@ -94,6 +94,24 @@ The notebook includes interactive Plotly dashboards/plots for:
 - Loyalty & retention
 - Purchase intent and time trends
 <img width="1463" height="985" alt="image" src="https://github.com/user-attachments/assets/d0049cb3-3f75-4a66-a589-e4ed53e2e15c" />
+<img width="1600" height="576" alt="image" src="https://github.com/user-attachments/assets/03734a4c-9c4a-46c4-ab07-34545d30d811" />
+<img width="1600" height="595" alt="image" src="https://github.com/user-attachments/assets/55c46dbb-590e-445f-acae-cb40d06698ed" />
+<img width="1600" height="673" alt="image" src="https://github.com/user-attachments/assets/328e96f2-e6d4-4adc-bedc-bc6e2cb85436" />
+<img width="1600" height="553" alt="image" src="https://github.com/user-attachments/assets/89fbcc86-1a46-492c-825a-91ec6152626f" />
+<img width="1600" height="601" alt="image" src="https://github.com/user-attachments/assets/c192011b-fb14-43ba-9b4a-8e29024c7ba5" />
+<img width="1600" height="553" alt="image" src="https://github.com/user-attachments/assets/d62f83b2-4507-41aa-bea4-e77b6fa00c31" />
+<img width="1600" height="604" alt="image" src="https://github.com/user-attachments/assets/668664c7-723d-43c0-b5e4-32d5154ef55f" />
+<img width="1600" height="569" alt="image" src="https://github.com/user-attachments/assets/83b9a221-299f-4464-8782-4a7434d78245" />
+<img width="1600" height="604" alt="image" src="https://github.com/user-attachments/assets/4358ee77-b45f-4fc3-81e1-da6b392b1212" />
+<img width="1600" height="571" alt="image" src="https://github.com/user-attachments/assets/ab913341-3f22-4bae-96a4-ecfd179978a5" />
+<img width="1600" height="548" alt="image" src="https://github.com/user-attachments/assets/0ec885ad-e49e-4ae8-93c7-25c1a4b9b8cf" />
+<img width="1600" height="560" alt="image" src="https://github.com/user-attachments/assets/0f09b17f-0b7a-4512-9e1c-321722f5c6a9" />
+<img width="1600" height="544" alt="image" src="https://github.com/user-attachments/assets/795b7b31-637b-4903-9fe2-6d756a9e5695" />
+<img width="1580" height="1259" alt="image" src="https://github.com/user-attachments/assets/9efa18ff-cbc0-451e-b42d-eaedfabae7d4" />
+<img width="1600" height="642" alt="image" src="https://github.com/user-attachments/assets/bdf077d9-f067-4b09-b405-91e281a7171e" />
+<img width="1600" height="562" alt="image" src="https://github.com/user-attachments/assets/470d1fee-6c8d-43bd-a9e8-5280b7a06b4d" />
+<img width="1600" height="613" alt="image" src="https://github.com/user-attachments/assets/c22ec67b-0c2b-4984-af6e-9f32dfc83e9a" />
+<img width="1600" height="570" alt="image" src="https://github.com/user-attachments/assets/84928718-c828-4e4c-8ab3-d8d4f4a9c2a3" />
 
 
 ### 4) Statistical tests
@@ -122,6 +140,7 @@ Education_Level vs Purchase_Intent:
 Marital_Status vs Customer_Loyalty_Program_Member:
   Chi² = 1.214, p-value = 0.7497 → ❌ Not Significant
 ```
+<img width="1600" height="641" alt="image" src="https://github.com/user-attachments/assets/7c6edf71-07be-4a85-b5a7-bdcc349f097d" />
 
 #### ANOVA
 
@@ -154,6 +173,7 @@ Baseline models:
 
 🏆 Best Model: Random Forest
 ```
+<img width="1600" height="641" alt="image" src="https://github.com/user-attachments/assets/d52cd8bf-728c-4599-922f-ef98d3655817" />
 
 Tuned model (RandomizedSearchCV over RF/ExtraTrees):
 
@@ -181,6 +201,8 @@ Interpretation: Purchase intent is hard to predict accurately from the available
    MAE:  2.5386
    R²:   -0.1847
 ```
+<img width="1600" height="652" alt="image" src="https://github.com/user-attachments/assets/93b4751b-3e31-4b92-bd8b-e8bf07faaf45" />
+![Uploading image.png…]()
 
 Negative $R^2$ indicates this model underperforms a naive baseline (predicting the mean) on this particular split.
 
@@ -197,6 +219,7 @@ Baseline models:
 
 🏆 Best Model (by AUC): Logistic Regression
 ```
+![Uploading image.png…]()
 
 Tuned model (optimize ROC-AUC):
 
@@ -216,6 +239,8 @@ Interpretation: tuned performance is close to random-chance ROC-AUC (~0.5), sugg
 ```text
 🏆 Optimal K = 8 (Silhouette = 0.0990)
 ```
+![Uploading image.png…]()
+![Uploading image.png…]()
 
 Cluster profiling output (means + sizes) is printed in the notebook for review.
 
